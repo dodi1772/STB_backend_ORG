@@ -72,7 +72,7 @@
     "Parameters": [
       {
         "Name": "authDto",
-        "Type": "STB_backend.DTOs.AuthDTO",
+        "Type": "STB_backend.DTOs.LoginDTO",
         "IsRequired": true
       }
     ],
@@ -88,7 +88,7 @@
     "Parameters": [
       {
         "Name": "authDto",
-        "Type": "STB_backend.DTOs.AuthDTO",
+        "Type": "STB_backend.DTOs.RegisterDTO",
         "IsRequired": true
       }
     ],

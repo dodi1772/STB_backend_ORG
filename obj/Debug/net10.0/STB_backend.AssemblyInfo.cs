@@ -15,7 +15,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("STB_backend")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+781fa682181093da72339b683aaf25fde7ae2fed")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5d9f845a179eb03781f0edf56b6be7d4a9ce5982")]
 [assembly: System.Reflection.AssemblyProductAttribute("STB_backend")]
 [assembly: System.Reflection.AssemblyTitleAttribute("STB_backend")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

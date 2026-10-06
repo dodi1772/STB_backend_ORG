@@ -51,10 +51,10 @@ C:\Users\doddermann\source\repos\STB_backend\STB_backend\obj\Debug\net10.0\stati
 C:\Users\doddermann\source\repos\STB_backend\STB_backend\obj\Debug\net10.0\staticwebassets.development.json
 C:\Users\doddermann\source\repos\STB_backend\STB_backend\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\doddermann\source\repos\STB_backend\STB_backend\obj\Debug\net10.0\swae.build.ex.cache
-C:\Users\doddermann\source\repos\STB_backend\STB_backend\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\doddermann\source\repos\STB_backend\STB_backend\obj\Debug\net10.0\STB_back.BF8EBD98.Up2Date
 C:\Users\doddermann\source\repos\STB_backend\STB_backend\obj\Debug\net10.0\STB_backend.dll
 C:\Users\doddermann\source\repos\STB_backend\STB_backend\obj\Debug\net10.0\refint\STB_backend.dll
 C:\Users\doddermann\source\repos\STB_backend\STB_backend\obj\Debug\net10.0\STB_backend.pdb
 C:\Users\doddermann\source\repos\STB_backend\STB_backend\obj\Debug\net10.0\STB_backend.genruntimeconfig.cache
 C:\Users\doddermann\source\repos\STB_backend\STB_backend\obj\Debug\net10.0\ref\STB_backend.dll
+C:\Users\doddermann\source\repos\STB_backend\STB_backend\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt

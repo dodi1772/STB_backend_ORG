@@ -13,7 +13,7 @@ namespace STB_backend.Controllers
             _supabaseClient = supabaseClient;
         }
         [HttpPost("register")]
-        public async Task<IActionResult> Register([FromBody] AuthDTO authDto)
+        public async Task<IActionResult> Register([FromBody] RegisterDTO authDto)
         {
             try
             {
@@ -22,7 +22,32 @@ namespace STB_backend.Controllers
                 {
                     return BadRequest(new { message = "A regisztráció sikertelen." });
                 }
-                return Ok(response);
+                var appUser = new AppUser
+                {
+                    Id = response.User.Id, // Az auth user UUID-ja
+                    FirstName = authDto.FirstName,
+                    LastName = authDto.LastName,
+                    Email = authDto.Email,
+                    PhoneNumber = authDto.PhoneNumber,
+                    CreditBalance = 0,
+                    UserType = Role.USER,
+                    PartnerTier = PartnerTier.NONE,
+                    DiscountRate = 0,
+                    CreatedAt = DateTime.UtcNow,
+                    UpdatedAt = DateTime.UtcNow,
+                    IsDeleted = false
+                };
+                await _supabaseClient.From<AppUser>().Insert(appUser);
+                return Ok(
+                    new
+                    {
+                        user = appUser.Id,
+                        message = "Sikeres regisztráció.",
+                        accessToken = response.AccessToken,
+                        expiresIn = response.ExpiresIn,
+                        refreshToken = response.RefreshToken
+                    }
+                    );
             }
             catch (Exception ex)
             {
@@ -30,7 +55,7 @@ namespace STB_backend.Controllers
             }   
         }
         [HttpPost("login")]
-        public async Task<IActionResult> Login([FromBody] AuthDTO authDto)
+        public async Task<IActionResult> Login([FromBody] LoginDTO authDto)
         {
             try
             {
@@ -43,7 +68,7 @@ namespace STB_backend.Controllers
                 {
                     user = response.User.Id,
                     accessToken = response.AccessToken,
-                    refreshToken = response.ExpiresIn
+                    expiresIn = response.ExpiresIn
                 });
             }
             catch (Exception ex)

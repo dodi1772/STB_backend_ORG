@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using STB_backend.DTOs;
 
 namespace STB_backend.Controllers
@@ -18,6 +19,7 @@ namespace STB_backend.Controllers
             var rooms = await _supabaseClient.From<Room>().Where(r => !r.IsDeleted).Get();
             return Ok(rooms.Models);
         }
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateRoom([FromBody] RoomCreateDTO roomDto)
         {
@@ -33,6 +35,7 @@ namespace STB_backend.Controllers
             var response = await _supabaseClient.From<Room>().Insert(roomToInsert);
             return Ok(response);
         }
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateRoom([FromRoute] string id, [FromBody] RoomUpdateDTO roomDto)
         {
@@ -50,6 +53,7 @@ namespace STB_backend.Controllers
             var response = await _supabaseClient.From<Room>().Update(existingRoom);
             return Ok(response);
         }
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteRoom([FromRoute] string id)
         {

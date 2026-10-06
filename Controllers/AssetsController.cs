@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using STB_backend.DTOs;
 
 namespace STB_backend.Controllers
@@ -18,6 +19,7 @@ namespace STB_backend.Controllers
             var assets = await _supabaseClient.From<Asset>().Get();
             return Ok(assets.Models);
         }
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateAsset([FromBody] AssetCreateDTO assetDto)
         {
@@ -36,6 +38,7 @@ namespace STB_backend.Controllers
             var response = await _supabaseClient.From<Asset>().Insert(assetToInsert);
             return Ok(response);
         }
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateAsset([FromRoute] string id, [FromBody] AssetUpdateDTO assetDto)
         {
@@ -56,6 +59,7 @@ namespace STB_backend.Controllers
             var response = await _supabaseClient.From<Asset>().Update(existingAsset);
             return Ok(response);
         }
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteAsset([FromRoute] string id)
         {

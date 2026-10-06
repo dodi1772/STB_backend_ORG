@@ -34,7 +34,7 @@ builder.Services.AddSwaggerGen(c=>
     c.AddSecurityRequirement(doc => new OpenApiSecurityRequirement
     {
         {
-            new OpenApiSecuritySchemeReference("Bearer", null, null),
+            new OpenApiSecuritySchemeReference("Bearer", doc),
             new List<string>()
         }
     });
@@ -47,7 +47,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     .AddJwtBearer(options =>
     {
-        options.MetadataAddress = "https://cnzmkmydmpsddsaelnpu.supabase.co/auth/v1/.well-known/jwks.json";
+        options.Authority = "https://cnzmkmydmpsddsaelnpu.supabase.co/auth/v1";
 
         options.TokenValidationParameters = new TokenValidationParameters
         {
@@ -61,6 +61,15 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
     });
 
 builder.Services.AddAuthorization();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowFrontend", builder =>
+    {
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
+    });
+});
 var app = builder.Build();
 // A HTTP-kérelmek feldolgozása.
 //if (app.Environment.IsDevelopment())
@@ -68,5 +77,8 @@ var app = builder.Build();
     app.UseSwagger();
     app.UseSwaggerUI();
 //}
+app.UseCors("AllowFrontend");
+app.UseAuthentication();
+app.UseAuthorization();
 app.MapControllers();
 app.Run();

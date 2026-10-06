@@ -21,6 +21,7 @@ namespace STB_backend.Controllers
             var users = await _supabaseClient.From<AppUser>().Where(u => !u.IsDeleted).Get();
             return Ok(users.Models);
         }
+        [Authorize]
         [HttpPost]
         public async Task<IActionResult> CreateUser([FromBody] UserCreateDTO userDto)
         {
@@ -42,6 +43,7 @@ namespace STB_backend.Controllers
             var response = await _supabaseClient.From<AppUser>().Insert(userToInsert);
             return Ok(response);
         }
+        [Authorize]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser([FromRoute] string id, [FromBody] UserUpdateDTO userDto)
         {
@@ -59,6 +61,7 @@ namespace STB_backend.Controllers
             var response = await _supabaseClient.From<AppUser>().Update(existingUser);
             return Ok(response);
         }
+        [Authorize]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] string id)
         {
