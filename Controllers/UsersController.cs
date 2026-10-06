@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using STB_backend.DTOs;
+using STB_backend.Models;
 using Supabase.Gotrue;
 
 
@@ -43,7 +44,7 @@ namespace STB_backend.Controllers
             var response = await _supabaseClient.From<AppUser>().Insert(userToInsert);
             return Ok(response);
         }
-        [Authorize]
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpPut("{id}")]
         public async Task<IActionResult> UpdateUser([FromRoute] string id, [FromBody] UserUpdateDTO userDto)
         {
@@ -61,7 +62,7 @@ namespace STB_backend.Controllers
             var response = await _supabaseClient.From<AppUser>().Update(existingUser);
             return Ok(response);
         }
-        [Authorize]
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteUser([FromRoute] string id)
         {

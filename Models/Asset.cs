@@ -1,7 +1,7 @@
 ﻿using Supabase.Postgrest.Attributes;
 using Supabase.Postgrest.Models;
 
-namespace STB_backend
+namespace STB_backend.Models
 {
     [Table("assets")]
     public class Asset : BaseModel

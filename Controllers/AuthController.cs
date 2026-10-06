@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using STB_backend.DTOs;
+using STB_backend.Models;
 
 namespace STB_backend.Controllers
 {
